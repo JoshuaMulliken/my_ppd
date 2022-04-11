@@ -1,0 +1,11 @@
+Package: croc
+Version: 9.5.3
+Architecture: armel
+Maintainer: Joshua Mulliken <joshua@mulliken.net>
+Filename: ./croc_9.5.3-1_armel.deb
+Size: 3680668
+MD5sum: ddd433f9f4afa8e483d674492c8761b5
+SHA1: 96c9566458717416a837bb8594a149343e62fa25
+SHA256: dab9606ee399e69c7219c225d76eb5868e6e1374e0426b3b514158641b33f83a
+Description: Easily and securely send things from one computer to another
+
