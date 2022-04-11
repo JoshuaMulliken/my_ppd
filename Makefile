@@ -1,7 +1,7 @@
 .PHONY: generate-repo
 generate-repo: repo.generated
 
-repo.generated: debian/InRelease debian/Release.gpg debian/joshuamulliken_ppa.list
+repo.generated: debian/InRelease debian/joshuamulliken_ppa.list
 	touch repo.generated
 
 debian/joshuamulliken_ppa.list:
@@ -19,13 +19,13 @@ debian/Release.gpg: debian/Release
 
 debian/Packages: debian croc/build.done
 	cp croc/croc*.deb debian
-	dpkg-scanpackages -m debian/ > debian/Packages
+	cd debian && dpkg-scanpackages -m . > Packages
 
 debian/Packages.gz: debian/Packages
 	gzip -k -f debian/Packages
 
 debian/Release: debian/Packages.gz
-	apt-ftparchive release ./debian > debian/Release
+	cd debian && apt-ftparchive release . > Release
 
 croc/build.done:
 	cd croc && make $*

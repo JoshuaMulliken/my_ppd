@@ -2,7 +2,7 @@ Package: croc
 Version: 9.5.3
 Architecture: armhf
 Maintainer: Joshua Mulliken <joshua@mulliken.net>
-Filename: debian/croc_9.5.3-1_armhf.deb
+Filename: ./croc_9.5.3-1_armhf.deb
 Size: 3680016
 MD5sum: bfc51073a06fcd38fa3cb8ea36c8015d
 SHA1: 6612f00a0b562f3a5ca5b44a84491905b9e99979
