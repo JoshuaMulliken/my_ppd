@@ -1,22 +1,40 @@
-REPO_PATH = "debian/dists/bullseye"
+.PHONY: generate-repo
+generate-repo: repo.generated
 
+repo.generated: debian/InRelease debian/Release.gpg debian/joshuamulliken_ppa.list
+	touch repo.generated
+
+debian/joshuamulliken_ppa.list:
+	echo "deb https://joshuamulliken.github.io/my_ppa/debian ./" > debian/joshuamulliken_ppa.list
+
+debian/InRelease: debian/Release.gpg
+	@echo "# Please run the following command on the machine with access to the private key:"
+	@echo "gpg --clearsign -o - debian/Release > debian/InRelease"
+	@exit 1
+
+debian/Release.gpg: debian/Release
+	@echo "# Please run the following command on the machine with access to the private key:"
+	@echo "gpg -abs -o - debian/Release > debian/Release.gpg"
+	@exit 1
+
+debian/Packages: debian croc/build.done
+	cp croc/croc*.deb debian
+	dpkg-scanpackages -m debian/ > debian/Packages
+	gzip -k -f debian/Packages
+
+debian/Release: debian/Packages.gz
+	apt-ftparchive release debian/ > debian/Release
+
+croc/build.done:
+	cd croc && make $*
+
+debian:
+	@echo "# Please create the following directory and files:"
+	@echo "- debian/"
+	@echo "- debian/KEY.gpg"
+	@exit 1
+
+.PHONY: clean
 clean:
-	rm -f $(REPO_PATH)/croc_* $(REPO_PATH)/InRelease $(REPO_PATH)/Packages* $(REPO_PATH)/Release*
-
-build-croc: build-croc-armv6l
-
-build-croc-armv6l:
-	cd croc && GOOS=linux GOARCH=arm GOARM=6 go build -o ../croc_9.5.3-1_armv6l/usr/local/bin/croc
-
-package-croc:
-	dpkg-deb --build --root-owner-group croc_9.5.3-1_armv6l
-	mv croc_9.5.3-1_armv6l.deb $(REPO_PATH)
-
-release-create:
-	dpkg-scanpackages --multiversion $(REPO_PATH) > $(REPO_PATH)/Packages
-	gzip -k -f $(REPO_PATH)/Packages
-	apt-ftparchive release $(REPO_PATH) > $(REPO_PATH)/Release
-
-release-sign:
-	gpg --default-key "joshua@mulliken.net" -abs -o - $(REPO_PATH)/Release > $(REPO_PATH)/Release.gpg
-	gpg --default-key "joshua@mulliken.net" --clearsign -o - $(REPO_PATH)/Release > $(REPO_PATH)/InRelease
+	rm -rf debian/croc* debian/Packages* debian/Release*
+	cd croc && make clean
