@@ -1,5 +1,7 @@
+REPO_PATH = "debian/dists/bullseye"
+
 clean:
-	rm -f bullseye/croc_* bullseye/InRelease bullseye/Packages* bullseye/Release*
+	rm -f $(REPO_PATH)/croc_* $(REPO_PATH)/InRelease $(REPO_PATH)/Packages* $(REPO_PATH)/Release*
 
 build-croc: build-croc-armv6l
 
@@ -8,13 +10,13 @@ build-croc-armv6l:
 
 package-croc:
 	dpkg-deb --build --root-owner-group croc_9.5.3-1_armv6l
-	mv croc_9.5.3-1_armv6l.deb bullseye
+	mv croc_9.5.3-1_armv6l.deb $(REPO_PATH)
 
 release-create:
-	dpkg-scanpackages --multiversion bullseye > bullseye/Packages
-	gzip -k -f bullseye/Packages
-	apt-ftparchive release bullseye > bullseye/Release
+	dpkg-scanpackages --multiversion $(REPO_PATH) > $(REPO_PATH)/Packages
+	gzip -k -f $(REPO_PATH)/Packages
+	apt-ftparchive release $(REPO_PATH) > $(REPO_PATH)/Release
 
 release-sign:
-	gpg --default-key "joshua@mulliken.net" -abs -o - bullseye/Release > bullseye/Release.gpg
-	gpg --default-key "joshua@mulliken.net" --clearsign -o - bullseye/Release > bullseye/InRelease
+	gpg --default-key "joshua@mulliken.net" -abs -o - $(REPO_PATH)/Release > $(REPO_PATH)/Release.gpg
+	gpg --default-key "joshua@mulliken.net" --clearsign -o - $(REPO_PATH)/Release > $(REPO_PATH)/InRelease
