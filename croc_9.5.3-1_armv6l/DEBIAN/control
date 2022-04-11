@@ -1,0 +1,5 @@
+Package: croc
+Version: 9.5.3
+Architecture: armv6l
+Maintainer: Joshua Mulliken <joshua@mulliken.net>
+Description: Easily and securely send things from one computer to another
