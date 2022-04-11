@@ -1,0 +1,5 @@
+Package: croc
+Version: 9.5.3
+Architecture: armhf
+Maintainer: Joshua Mulliken <joshua@mulliken.net
+Description: A command line tool for easily and securely sending things from one computer to another
