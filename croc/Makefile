@@ -33,7 +33,7 @@ croc_$(VERSION)-$(REVISION)_$(DEBIAN_ARCH)/DEBIAN/control:
 	echo "Package: croc" > croc_$(VERSION)-$(REVISION)_$(DEBIAN_ARCH)/DEBIAN/control
 	echo "Version: $(VERSION)" >> croc_$(VERSION)-$(REVISION)_$(DEBIAN_ARCH)/DEBIAN/control
 	echo "Architecture: $(DEBIAN_ARCH)" >> croc_$(VERSION)-$(REVISION)_$(DEBIAN_ARCH)/DEBIAN/control
-	echo "Maintainer: Joshua Mulliken <joshua@mulliken.net" >> croc_$(VERSION)-$(REVISION)_$(DEBIAN_ARCH)/DEBIAN/control
+	echo "Maintainer: Joshua Mulliken <joshua@mulliken.net>" >> croc_$(VERSION)-$(REVISION)_$(DEBIAN_ARCH)/DEBIAN/control
 	echo "Description: A command line tool for easily and securely sending things from one computer to another" >> croc_$(VERSION)-$(REVISION)_$(DEBIAN_ARCH)/DEBIAN/control
 
 croc_$(VERSION)-$(REVISION)_$(DEBIAN_ARCH).deb: croc_$(VERSION)-$(REVISION)_$(DEBIAN_ARCH)/DEBIAN/control croc_$(VERSION)-$(REVISION)_$(DEBIAN_ARCH)/usr/local/bin/croc

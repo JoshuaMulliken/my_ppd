@@ -1,11 +1,11 @@
 Package: croc
 Version: 9.5.3
-Architecture: arm
+Architecture: armhf
 Maintainer: Joshua Mulliken <joshua@mulliken.net>
 Filename: debian/croc_9.5.3-1_armhf.deb
-Size: 3679380
-MD5sum: ccaf4c818e3c2a826015d3c80980154c
-SHA1: 74bf8d13ffc1d861e48e60e5d374ae0849c44a0b
-SHA256: fb83246c83b167979ac76fe6aaeff629d9db35408898540b2050c700d0927515
-Description: Croc is a command line tool for easily and securely sending things from one computer to another
+Size: 3680016
+MD5sum: bfc51073a06fcd38fa3cb8ea36c8015d
+SHA1: 6612f00a0b562f3a5ca5b44a84491905b9e99979
+SHA256: b1d6c6c8f99d1f3550d9f70cdbc78672a4f268cf8ab56671daebe1019697299d
+Description: A command line tool for easily and securely sending things from one computer to another
 
